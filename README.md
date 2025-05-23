@@ -42,7 +42,7 @@ Technologies used in this project include:
 
 The project is structured to ensure a clean separation of concerns, making it easy to maintain and scale. Below is a high-level overview of the architecture:
 
-```mermaid
+\`\`\`mermaid
 graph TD
     subgraph Development & Deployment
         A[v0 AI] --> B{GitHub Repository};
@@ -66,7 +66,7 @@ graph TD
     style C fill:#f9f,stroke:#333,stroke-width:2px;
     style D fill:#fdd,stroke:#333,stroke-width:2px;
     style E fill:#ccf,stroke:#333,stroke-width:2px;
-```
+\`\`\`
 
 ![Project Architecture Diagram](architecture.png)
 

@@ -17,7 +17,10 @@ export function UpcomingEvents() {
         const now = new Date()
 
         // Filter events that are upcoming (in the future)
-        const upcoming = allEvents.filter((event) => new Date(event.date_time) > now).slice(0, 3) // Show only next 3 events
+        const upcoming = allEvents
+          .filter((event) => new Date(event.date_time) > now)
+          .sort((a, b) => new Date(a.date_time).getTime() - new Date(b.date_time).getTime())
+          .slice(0, 3) // Show only next 3 events
 
         setUpcomingEvents(upcoming)
       } catch (error) {
@@ -33,6 +36,7 @@ export function UpcomingEvents() {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString("en-US", {
+      weekday: "short",
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -59,11 +63,15 @@ export function UpcomingEvents() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[1, 2, 3].map((i) => (
               <div key={i} className="animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2 mb-1"></div>
+                <div className="flex gap-2 mt-2">
+                  <div className="h-3 bg-gray-200 rounded w-24"></div>
+                  <div className="h-3 bg-gray-200 rounded w-24"></div>
+                </div>
               </div>
             ))}
           </div>
@@ -105,7 +113,7 @@ export function UpcomingEvents() {
                   <h4 className="font-medium text-sm">{event.name}</h4>
                   <p className="text-xs text-gray-600 mt-1">{event.short_description}</p>
 
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                  <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-gray-500">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       {formatDate(event.date_time)}
