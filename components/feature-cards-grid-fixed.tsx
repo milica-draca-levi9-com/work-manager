@@ -12,6 +12,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-rose-100",
       hoverBgColor: "bg-rose-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-rose-50", // Added background color
     },
     {
       title: "Education & Social",
@@ -22,6 +23,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-purple-100",
       hoverBgColor: "bg-purple-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-purple-50", // Added background color
     },
     {
       title: "Corporate Travel",
@@ -32,6 +34,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-sky-100",
       hoverBgColor: "bg-sky-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-sky-50", // Added background color
     },
     {
       title: "Expense Report",
@@ -42,6 +45,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-emerald-100",
       hoverBgColor: "bg-emerald-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-emerald-50", // Added background color
     },
     {
       title: "Maintenance Issues",
@@ -52,6 +56,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-amber-100",
       hoverBgColor: "bg-amber-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-amber-50", // Added background color
     },
     {
       title: "Asset Booking",
@@ -62,6 +67,7 @@ export function FeatureCardsGridFixed() {
       bgColor: "bg-teal-100",
       hoverBgColor: "bg-teal-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-teal-50", // Added background color
     },
   ]
 
@@ -78,6 +84,7 @@ export function FeatureCardsGridFixed() {
           bgColor={feature.bgColor}
           hoverBgColor={feature.hoverBgColor}
           hoverTextColor={feature.hoverTextColor}
+          cardBgColor={feature.cardBgColor} // Pass the cardBgColor prop
         />
       ))}
     </div>

@@ -12,6 +12,7 @@ interface FeatureCardWrapperProps {
   bgColor: string
   hoverBgColor: string
   hoverTextColor: string
+  cardBgColor?: string // Added optional cardBgColor prop
 }
 
 export function FeatureCardWrapper({
@@ -23,10 +24,16 @@ export function FeatureCardWrapper({
   bgColor,
   hoverBgColor,
   hoverTextColor,
+  cardBgColor,
 }: FeatureCardWrapperProps) {
   return (
     <Link href={href} className="group">
-      <Card className="h-full border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden bg-gradient-to-br from-white to-gray-50">
+      <Card
+        className={cn(
+          "h-full border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden",
+          cardBgColor || "bg-gradient-to-br from-white to-gray-50", // Use cardBgColor if provided, otherwise use the default gradient
+        )}
+      >
         <CardContent className="p-6 flex flex-col items-center md:items-start text-center md:text-left h-full relative">
           <div
             className={cn(
