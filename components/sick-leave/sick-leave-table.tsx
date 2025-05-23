@@ -2,6 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { format } from "date-fns"
 import type { SickLeave } from "@/lib/supabase"
+import { ImageIcon } from "lucide-react"
 
 interface SickLeaveTableProps {
   sickLeaves: SickLeave[]
@@ -77,7 +78,9 @@ export function SickLeaveTable({ sickLeaves, isLoading }: SickLeaveTableProps) {
               <TableCell>{leave.reason}</TableCell>
               <TableCell>
                 {leave.attachment_filename ? (
-                  <span className="text-sm text-blue-600">{leave.attachment_filename}</span>
+                  <span className="text-sm text-blue-600">
+                    <ImageIcon className="w-5 h-5 text-gray-600" />
+                  </span>
                 ) : (
                   <span className="text-sm text-gray-400">None</span>
                 )}

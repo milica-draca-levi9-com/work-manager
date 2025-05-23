@@ -1,12 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { MaintenanceForm } from "./maintenance-form"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CheckCircle } from "lucide-react"
 
 interface MaintenanceReportButtonProps {
   onIssueReported: () => void
@@ -34,43 +29,45 @@ export function MaintenanceReportButton({ onIssueReported }: MaintenanceReportBu
     }, 3000)
   }
 
-  return (
-    <>
-      <Button onClick={() => setIsDialogOpen(true)} className="bg-amber-500 hover:bg-amber-600">
-        <Plus className="mr-2 h-4 w-4" />
-        Report an Issue
-      </Button>
-
-      <Dialog
-        open={isDialogOpen}
-        onOpenChange={(open) => {
-          setIsDialogOpen(open)
-          if (!open) {
-            setSuccessMessage(null)
-            setAssignedPerson(null)
-          }
-        }}
-      >
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Report Maintenance Issue</DialogTitle>
-            <DialogDescription>Fill out the form below to report a maintenance issue.</DialogDescription>
-          </DialogHeader>
+  if (isDialogOpen) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium text-gray-900">Report Maintenance Issue</h3>
+            <p className="text-sm text-gray-500">Fill out the form below to report a maintenance issue.</p>
+          </div>
 
           {successMessage ? (
-            <Alert className="bg-green-50 border-green-200">
-              <CheckCircle className="h-4 w-4 text-green-600" />
-              <AlertTitle>Success!</AlertTitle>
-              <AlertDescription>{successMessage}</AlertDescription>
-              {assignedPerson && (
-                <AlertDescription className="mt-2">You can contact them at: {assignedPerson.email}</AlertDescription>
-              )}
-            </Alert>
+            <div className="bg-green-50 border border-green-200 rounded-md p-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <span className="text-green-600">✓</span>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-green-800">Success!</h3>
+                  <div className="mt-2 text-sm text-green-700">
+                    <p>{successMessage}</p>
+                    {assignedPerson && <p className="mt-2">You can contact them at: {assignedPerson.email}</p>}
+                  </div>
+                </div>
+              </div>
+            </div>
           ) : (
             <MaintenanceForm onSuccess={handleSuccess} />
           )}
-        </DialogContent>
-      </Dialog>
-    </>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <button
+      onClick={() => setIsDialogOpen(true)}
+      className="bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-md flex items-center"
+    >
+      <span className="mr-2">+</span>
+      Report an Issue
+    </button>
   )
 }

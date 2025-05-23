@@ -1,17 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { createMaintenanceIssue } from "@/lib/maintenance-actions"
-import { CalendarIcon, Loader2 } from "lucide-react"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { cn } from "@/lib/utils"
 import { ISSUE_TYPES, LOCATIONS } from "@/lib/maintenance-api"
 import type { IssueType, Location } from "@/lib/maintenance-api"
 
@@ -20,21 +11,23 @@ interface MaintenanceFormProps {
 }
 
 export function MaintenanceForm({ onSuccess }: MaintenanceFormProps) {
-  const [date, setDate] = useState<Date | undefined>(new Date())
+  const [date, setDate] = useState<string>(new Date().toISOString().split("T")[0])
   const [issueType, setIssueType] = useState<IssueType | "">("")
   const [description, setDescription] = useState("")
   const [location, setLocation] = useState<Location | "">("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Simple date formatting function
-  const formatDate = (date: Date | undefined): string => {
-    if (!date) return ""
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+  // Function to get emoji for issue type
+  const getIssueEmoji = (issueType: IssueType): string => {
+    switch (issueType) {
+      case "Equipment issue":
+        return "🖥️"
+      case "Building maintenance":
+        return "🏢"
+      default:
+        return "🔧"
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,14 +42,9 @@ export function MaintenanceForm({ onSuccess }: MaintenanceFormProps) {
     setError(null)
 
     try {
-      // Format date for the API
-      const formattedDate = date
-        ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
-        : ""
-
       // Create FormData
       const formData = new FormData()
-      formData.append("date", formattedDate)
+      formData.append("date", date)
       formData.append("issue_type", issueType)
       formData.append("description", description)
       formData.append("location", location)
@@ -76,90 +64,77 @@ export function MaintenanceForm({ onSuccess }: MaintenanceFormProps) {
     }
   }
 
-  // Function to get emoji for issue type
-  const getIssueEmoji = (issueType: IssueType): string => {
-    switch (issueType) {
-      case "Equipment issue":
-        return "🖥️"
-      case "Building maintenance":
-        return "🏢"
-      default:
-        return "🔧"
-    }
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="date">Date *</Label>
-        <Popover>
-          <PopoverTrigger>
-            <Button
-              id="date"
-              variant="outline"
-              type="button"
-              className={cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground")}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? formatDate(date) : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-          </PopoverContent>
-        </Popover>
+        <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+          Date *
+        </label>
+        <input
+          type="date"
+          id="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
+          required
+        />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="issue_type">Issue Type *</Label>
-        <Select value={issueType} onValueChange={(value) => setIssueType(value as IssueType)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select an issue type">
-              {issueType && (
-                <div className="flex items-center">
-                  <span className="mr-2">{getIssueEmoji(issueType as IssueType)}</span>
-                  <span>{issueType}</span>
-                </div>
-              )}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {ISSUE_TYPES.map((type) => (
-              <SelectItem key={type} value={type}>
-                <div className="flex items-center">
-                  <span className="mr-2">{getIssueEmoji(type)}</span>
-                  <span>{type}</span>
-                </div>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <label htmlFor="issue_type" className="block text-sm font-medium text-gray-700">
+          Issue Type *
+        </label>
+        <select
+          id="issue_type"
+          value={issueType}
+          onChange={(e) => setIssueType(e.target.value as IssueType)}
+          className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
+          required
+        >
+          <option value="" disabled>
+            Select an issue type
+          </option>
+          {ISSUE_TYPES.map((type) => (
+            <option key={type} value={type}>
+              {getIssueEmoji(type)} {type}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="location">Location *</Label>
-        <Select value={location} onValueChange={(value) => setLocation(value as Location)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a location" />
-          </SelectTrigger>
-          <SelectContent>
-            {LOCATIONS.map((loc) => (
-              <SelectItem key={loc} value={loc}>
-                {loc}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+          Location *
+        </label>
+        <select
+          id="location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value as Location)}
+          className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
+          required
+        >
+          <option value="" disabled>
+            Select a location
+          </option>
+          {LOCATIONS.map((loc) => (
+            <option key={loc} value={loc}>
+              {loc}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Description *</Label>
-        <Textarea
+        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+          Description *
+        </label>
+        <textarea
           id="description"
           placeholder="Please describe the issue in detail"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
+          className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
           required
         />
       </div>
@@ -167,19 +142,20 @@ export function MaintenanceForm({ onSuccess }: MaintenanceFormProps) {
       {error && <div className="text-sm text-red-500 font-medium">{error}</div>}
 
       <div className="flex justify-end gap-4 pt-2">
-        <Button type="button" variant="outline" onClick={() => onSuccess(null)}>
+        <button
+          type="button"
+          onClick={() => onSuccess(null)}
+          className="py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+        >
           Cancel
-        </Button>
-        <Button type="submit" className="bg-amber-500 hover:bg-amber-600" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            "Submit Issue"
-          )}
-        </Button>
+        </button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50"
+        >
+          {isSubmitting ? "Submitting..." : "Submit Issue"}
+        </button>
       </div>
     </form>
   )

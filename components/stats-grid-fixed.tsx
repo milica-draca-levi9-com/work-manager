@@ -14,7 +14,7 @@ export function StatsGridFixed() {
     },
     {
       title: "Planned Trips",
-      value: 1,
+      value: '-',
       icon: Plane,
       bgColor: "bg-sky-100",
       iconColor: "text-sky-500",

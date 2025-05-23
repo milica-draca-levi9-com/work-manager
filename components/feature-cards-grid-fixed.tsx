@@ -3,40 +3,7 @@ import { Thermometer, GraduationCap, Plane, Wrench, Car, Receipt } from "lucide-
 
 export function FeatureCardsGridFixed() {
   const features = [
-    {
-      title: "Sick Leave",
-      description: "Submit your sick leave with just a few clicks and get some rest!",
-      icon: Thermometer,
-      href: "/sick-leave",
-      iconColor: "text-rose-500",
-      bgColor: "bg-rose-100",
-      hoverBgColor: "bg-rose-500",
-      hoverTextColor: "text-white",
-      cardBgColor: "bg-rose-50", // Added background color
-    },
-    {
-      title: "Education & Social",
-      description: "Learn something new or join team-building events",
-      icon: GraduationCap,
-      href: "/education-social",
-      iconColor: "text-purple-500",
-      bgColor: "bg-purple-100",
-      hoverBgColor: "bg-purple-500",
-      hoverTextColor: "text-white",
-      cardBgColor: "bg-purple-50", // Added background color
-    },
-    {
-      title: "Corporate Travel",
-      description: "Arrange flights and book your business trips",
-      icon: Plane,
-      href: "/corporate-travel",
-      iconColor: "text-sky-500",
-      bgColor: "bg-sky-100",
-      hoverBgColor: "bg-sky-500",
-      hoverTextColor: "text-white",
-      cardBgColor: "bg-sky-50", // Added background color
-    },
-    {
+  {
       title: "Expense Report",
       description: "Upload receipts and get reimbursed quickly",
       icon: Receipt,
@@ -69,6 +36,39 @@ export function FeatureCardsGridFixed() {
       hoverTextColor: "text-white",
       cardBgColor: "bg-teal-50", // Added background color
     },
+    {
+      title: "Sick Leave",
+      description: "Submit your sick leave with just a few clicks and get some rest!",
+      icon: Thermometer,
+      href: "/sick-leave",
+      iconColor: "text-rose-500",
+      bgColor: "bg-rose-100",
+      hoverBgColor: "bg-rose-500",
+      hoverTextColor: "text-white",
+      cardBgColor: "bg-rose-50", // Added background color
+    },
+    {
+      title: "Education & Social",
+      description: "Learn something new or join team-building events",
+      icon: GraduationCap,
+      href: "/education-social",
+      iconColor: "text-purple-500",
+      bgColor: "bg-purple-100",
+      hoverBgColor: "bg-purple-500",
+      hoverTextColor: "text-white",
+      cardBgColor: "bg-purple-50", // Added background color
+    },
+    {
+      title: "Corporate Travel",
+      description: "Arrange flights and book your business trips",
+      icon: Plane,
+      href: "/corporate-travel",
+      iconColor: "text-sky-500",
+      bgColor: "bg-sky-100",
+      hoverBgColor: "bg-sky-500",
+      hoverTextColor: "text-white",
+      cardBgColor: "bg-sky-50", // Added background color
+    }
   ]
 
   return (

@@ -1,6 +1,3 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Cpu, Building } from "lucide-react"
 import type { MaintenanceIssue, IssueType } from "@/lib/maintenance-api"
 
 interface MaintenanceTableProps {
@@ -9,17 +6,15 @@ interface MaintenanceTableProps {
 }
 
 export function MaintenanceTable({ issues, isLoading }: MaintenanceTableProps) {
-  // Function to get icon for issue type
-  const getIssueIcon = (issueType: IssueType) => {
-    const iconProps = { className: "h-5 w-5" }
-
+  // Function to get emoji for issue type
+  const getIssueEmoji = (issueType: IssueType): string => {
     switch (issueType) {
       case "Equipment issue":
-        return <Cpu {...iconProps} className="h-5 w-5 text-blue-600" />
+        return "🖥️"
       case "Building maintenance":
-        return <Building {...iconProps} className="h-5 w-5 text-amber-600" />
+        return "🏢"
       default:
-        return <Cpu {...iconProps} />
+        return "🔧"
     }
   }
 
@@ -38,34 +33,40 @@ export function MaintenanceTable({ issues, isLoading }: MaintenanceTableProps) {
 
   // Function to render status badge
   const renderStatusBadge = (status: string) => {
+    let bgColor = "bg-gray-50"
+    let textColor = "text-gray-700"
+    let borderColor = "border-gray-200"
+
     switch (status) {
       case "Open":
-        return (
-          <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-            Open
-          </Badge>
-        )
+        bgColor = "bg-yellow-50"
+        textColor = "text-yellow-700"
+        borderColor = "border-yellow-200"
+        break
       case "In Progress":
-        return (
-          <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-            In Progress
-          </Badge>
-        )
+        bgColor = "bg-blue-50"
+        textColor = "text-blue-700"
+        borderColor = "border-blue-200"
+        break
       case "Resolved":
-        return (
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-            Resolved
-          </Badge>
-        )
+        bgColor = "bg-green-50"
+        textColor = "text-green-700"
+        borderColor = "border-green-200"
+        break
       case "Closed":
-        return (
-          <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">
-            Closed
-          </Badge>
-        )
-      default:
-        return <Badge variant="outline">{status}</Badge>
+        bgColor = "bg-gray-50"
+        textColor = "text-gray-700"
+        borderColor = "border-gray-200"
+        break
     }
+
+    return (
+      <span
+        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${bgColor} ${textColor} border ${borderColor}`}
+      >
+        {status}
+      </span>
+    )
   }
 
   if (isLoading) {
@@ -82,41 +83,53 @@ export function MaintenanceTable({ issues, isLoading }: MaintenanceTableProps) {
 
   return (
     <div className="overflow-x-auto">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead>Issue Type</TableHead>
-            <TableHead className="w-1/3">Description</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Assigned To</TableHead>
-            <TableHead>Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Date
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Issue Type
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Description
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Location
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Assigned To
+            </th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
           {issues.map((issue) => (
-            <TableRow key={issue.id}>
-              <TableCell>{formatDate(issue.date)}</TableCell>
-              <TableCell>
-                <div className="flex items-center gap-3">
-                  {getIssueIcon(issue.issue_type)}
-                  <span>{issue.issue_type}</span>
+            <tr key={issue.id}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatDate(issue.date)}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex items-center">
+                  <span className="mr-2">{getIssueEmoji(issue.issue_type)}</span>
+                  <span className="text-sm font-medium text-gray-900">{issue.issue_type}</span>
                 </div>
-              </TableCell>
-              <TableCell>{issue.description}</TableCell>
-              <TableCell>{issue.location}</TableCell>
-              <TableCell>
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-500">{issue.description}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{issue.location}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {issue.assigned_person ? (
-                  <span className="text-sm font-medium">{issue.assigned_person.name}</span>
+                  <span className="font-medium">{issue.assigned_person.name}</span>
                 ) : (
-                  <span className="text-sm text-gray-400">Not assigned</span>
+                  <span className="text-gray-400">Not assigned</span>
                 )}
-              </TableCell>
-              <TableCell>{renderStatusBadge(issue.status)}</TableCell>
-            </TableRow>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{renderStatusBadge(issue.status)}</td>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
+        </tbody>
+      </table>
     </div>
   )
 }
