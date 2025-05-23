@@ -1,3 +1,4 @@
+'use client'
 import { supabase } from "@/lib/supabase"
 import { StatsCardWrapper } from "@/components/stats-card-wrapper"
 import { Thermometer } from "lucide-react"
