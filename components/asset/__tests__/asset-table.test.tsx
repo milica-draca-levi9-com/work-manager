@@ -108,20 +108,20 @@ describe('AssetTable', () => {
   })
 
   it('handles loading state', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <AssetTable assets={[]} isLoading={true} />
     )
 
-    // When loading, the table should still have the header
-    expect(getByTestId('mock-table-header')).toBeInTheDocument()
+    // When loading, show loading message
+    expect(getByText('Loading asset bookings...')).toBeInTheDocument()
   })
 
   it('handles empty assets array', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <AssetTable assets={[]} isLoading={false} />
     )
 
-    // Should have the header
-    expect(getByTestId('mock-table-header')).toBeInTheDocument()
+    // When empty, show empty message
+    expect(getByText('No asset bookings found. Create a new booking using the button above.')).toBeInTheDocument()
   })
 }) 

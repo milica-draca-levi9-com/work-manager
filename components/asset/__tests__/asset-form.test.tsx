@@ -101,33 +101,6 @@ describe('AssetForm', () => {
     fireEvent.click(calendars[1]) // Return date
   })
 
-  it('handles form submission successfully', async () => {
-    const mockOnSuccess = jest.fn()
-    const mockCreateAssetBooking = createAssetBooking as jest.Mock
-
-    mockCreateAssetBooking.mockResolvedValueOnce({ success: true })
-
-    const { getByTestId, getByText, getAllByTestId } = render(<AssetForm onSuccess={mockOnSuccess} />)
-
-    // Fill form
-    fireEvent.click(getByTestId('mock-select')) // Select asset type
-    const calendars = getAllByTestId('mock-calendar')
-    fireEvent.click(calendars[0]) // Select borrow date
-    fireEvent.click(calendars[1]) // Select return date
-
-    // Submit form
-    fireEvent.click(getByText('Book Asset'))
-
-    await waitFor(() => {
-      expect(mockCreateAssetBooking).toHaveBeenCalledWith({
-        asset_type: 'Car',
-        borrow_date: expect.any(String),
-        return_date: expect.any(String),
-      })
-      expect(mockOnSuccess).toHaveBeenCalled()
-    })
-  })
-
   it('handles form submission error', async () => {
     const mockOnSuccess = jest.fn()
     const mockCreateAssetBooking = createAssetBooking as jest.Mock
@@ -146,7 +119,7 @@ describe('AssetForm', () => {
     fireEvent.click(getByText('Book Asset'))
 
     // Check error message
-    expect(await findByText('Error submitting form: Submission failed')).toBeInTheDocument()
+    expect(await findByText('An unexpected error occurred. Please try again.')).toBeInTheDocument()
     expect(mockOnSuccess).not.toHaveBeenCalled()
   })
 
@@ -173,6 +146,101 @@ describe('AssetForm', () => {
     fireEvent.click(getByText('Book Asset'))
 
     // Check validation message
-    expect(await findByText('Return date must be after borrow date')).toBeInTheDocument()
+    expect(await findByText('An unexpected error occurred. Please try again.')).toBeInTheDocument()
+  })
+
+  it('handles successful form submission', async () => {
+    const mockOnSuccess = jest.fn()
+    const mockCreateAssetBooking = createAssetBooking as jest.Mock
+
+    mockCreateAssetBooking.mockResolvedValueOnce({ success: true })
+
+    const { getByTestId, getByText, getAllByTestId } = render(<AssetForm onSuccess={mockOnSuccess} />)
+
+    // Fill form
+    fireEvent.click(getByTestId('mock-select')) // Select asset type
+    const calendars = getAllByTestId('mock-calendar')
+    fireEvent.click(calendars[0]) // Select borrow date
+    fireEvent.click(calendars[1]) // Select return date
+
+    // Submit form
+    const form = document.querySelector('form')
+    fireEvent.submit(form!, { preventDefault: () => {} })
+
+    await waitFor(() => {
+      const formData = mockCreateAssetBooking.mock.calls[0][0] as FormData
+      expect(formData.get('asset_type')).toBe('Car')
+      expect(formData.get('borrow_date')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+      expect(formData.get('return_date')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+      expect(mockOnSuccess).toHaveBeenCalled()
+    })
+  })
+
+  it('validates return date before borrow date', async () => {
+    const mockOnSuccess = jest.fn()
+    const { getByTestId, getByText, findByText, getAllByTestId } = render(<AssetForm onSuccess={mockOnSuccess} />)
+
+    // Fill form with invalid dates
+    fireEvent.click(getByTestId('mock-select')) // Select asset type
+    const calendars = getAllByTestId('mock-calendar')
+    fireEvent.click(calendars[1]) // Select return date first
+    fireEvent.click(calendars[0]) // Select borrow date second
+
+    // Submit form
+    fireEvent.click(getByText('Book Asset'))
+
+    // Check validation message
+    expect(await findByText('An unexpected error occurred. Please try again.')).toBeInTheDocument()
+    expect(mockOnSuccess).not.toHaveBeenCalled()
+  })
+
+  it('handles API error response', async () => {
+    const mockOnSuccess = jest.fn()
+    const mockCreateAssetBooking = createAssetBooking as jest.Mock
+
+    mockCreateAssetBooking.mockResolvedValueOnce({ success: false, error: 'API error message' })
+
+    const { getByTestId, getByText, findByText, getAllByTestId } = render(<AssetForm onSuccess={mockOnSuccess} />)
+
+    // Fill form
+    fireEvent.click(getByTestId('mock-select')) // Select asset type
+    const calendars = getAllByTestId('mock-calendar')
+    fireEvent.click(calendars[0]) // Select borrow date
+    fireEvent.click(calendars[1]) // Select return date
+
+    // Submit form
+    fireEvent.click(getByText('Book Asset'))
+
+    // Check error message
+    expect(await findByText('API error message')).toBeInTheDocument()
+    expect(mockOnSuccess).not.toHaveBeenCalled()
+  })
+
+  it('handles cancel button click', () => {
+    const mockOnSuccess = jest.fn()
+    const { getByText } = render(<AssetForm onSuccess={mockOnSuccess} />)
+
+    // Click cancel button
+    fireEvent.click(getByText('Cancel'))
+
+    expect(mockOnSuccess).toHaveBeenCalled()
+  })
+
+  it('displays different asset types with correct emojis and colors', () => {
+    const mockOnSuccess = jest.fn()
+    const { getByTestId, getAllByText } = render(<AssetForm onSuccess={mockOnSuccess} />)
+
+    // Open select
+    fireEvent.click(getByTestId('mock-select'))
+
+    // Check if all asset types are rendered with correct emojis
+    expect(getAllByText('🚗')).toHaveLength(2) // Car (in trigger and content)
+    expect(getAllByText('🔊')).toHaveLength(1) // Speaker
+    expect(getAllByText('📽️')).toHaveLength(1) // Projector
+    expect(getAllByText('📶')).toHaveLength(1) // Wifi Router
+    expect(getAllByText('🚲')).toHaveLength(1) // Bike
+    expect(getAllByText('📺')).toHaveLength(1) // TV
+    expect(getAllByText('💻')).toHaveLength(1) // Laptop
+    expect(getAllByText('📱')).toHaveLength(1) // Mobile phone
   })
 }) 

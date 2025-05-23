@@ -47,7 +47,7 @@ describe('AssetBookButton', () => {
     )
 
     // Check if button is rendered with correct content
-    const button = getByRole('button')
+    const button = getByRole('button', { name: /book asset/i })
     expect(button).toBeInTheDocument()
     expect(getByTestId('mock-plus-icon')).toBeInTheDocument()
     expect(button).toHaveTextContent('Book Asset')

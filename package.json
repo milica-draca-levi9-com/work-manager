@@ -64,6 +64,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@swc/core": "^1.11.29",
     "@swc/jest": "^0.2.38",
     "@testing-library/dom": "^10.4.0",

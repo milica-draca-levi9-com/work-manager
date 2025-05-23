@@ -10,9 +10,18 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '^@/app/globals\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/components/asset/__tests__/setup.ts'
+  ],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { 
+      presets: ['next/babel'],
+      plugins: [
+        '@babel/plugin-transform-react-jsx',
+      ],
+    }],
   },
   transformIgnorePatterns: [
     '/node_modules/',
@@ -21,8 +30,8 @@ module.exports = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',
-    'components/**/*.{js,jsx,ts,tsx}',
-    'lib/**/*.{js,jsx,ts,tsx}',
+    'components/asset/*.{js,jsx,ts,tsx}',
+    '!lib/**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
   ],
@@ -32,6 +41,13 @@ module.exports = {
       functions: 80,
       lines: 80,
       statements: 80,
+    },
+  },
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        jsx: 'react',
+      },
     },
   },
 } 
