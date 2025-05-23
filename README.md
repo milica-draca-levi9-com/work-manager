@@ -31,6 +31,45 @@ Your project is live at:
 
 https://v0-web-app-dashboard-three.vercel.app/
 
+## 🏗️ Project Architecture
+
+Technologies used in this project include:
+- v0 AI
+- Next.js
+- Vercel
+- Supabase
+- Supabase Edge Functions
+
+The project is structured to ensure a clean separation of concerns, making it easy to maintain and scale. Below is a high-level overview of the architecture:
+
+```mermaid
+graph TD
+    subgraph Development & Deployment
+        A[v0 AI] --> B{GitHub Repository};
+        B -- Push to main --> C[Vercel Automatic Deployment];
+    end
+
+    subgraph Backend & Data
+        C -- Deploys & Communicates --> D[Supabase Database];
+        D -- Invokes --> E[Supabase Edge Functions];
+    end
+
+    %% Flow of control and data
+    A -- Writes Code & Initiates Deployment --> B;
+    B -- Hosts Code --> C;
+    C -- Connects to --> D;
+    E -- Provides Serverless Logic --> C;
+
+    %% Styling for clarity
+    style A fill:#bbf,stroke:#333,stroke-width:2px;
+    style B fill:#afa,stroke:#333,stroke-width:2px;
+    style C fill:#f9f,stroke:#333,stroke-width:2px;
+    style D fill:#fdd,stroke:#333,stroke-width:2px;
+    style E fill:#ccf,stroke:#333,stroke-width:2px;
+```
+
+![Project Architecture Diagram](architecture.png)
+
 ---
 
 # Features overview
