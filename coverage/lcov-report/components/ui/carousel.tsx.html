@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/53</span>
+                <span class='fraction'>0/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>0/33</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/53</span>
+                <span class='fraction'>0/55</span>
             </div>
         
             
@@ -483,7 +483,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -505,7 +505,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -621,10 +621,10 @@ type CarouselContextProps = {
 &nbsp;
 const CarouselContext = <span class="cstat-no" title="statement not covered" >React.createContext&lt;CarouselContextProps | null&gt;(null)</span>
 &nbsp;
-function <span class="fstat-no" title="function not covered" >useCarousel() {</span>
+function <span class="fstat-no" title="function not covered" >useCarousel(</span>) {
   const context = <span class="cstat-no" title="statement not covered" >React.useContext(CarouselContext)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (!context) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!context) {</span>
 <span class="cstat-no" title="statement not covered" >    throw new Error("useCarousel must be used within a &lt;Carousel /&gt;")</span>
   }
 &nbsp;
@@ -658,7 +658,7 @@ const Carousel = <span class="cstat-no" title="statement not covered" >React.for
     const [canScrollNext, setCanScrollNext] = <span class="cstat-no" title="statement not covered" >React.useState(false)</span>
 &nbsp;
     const onSelect = <span class="cstat-no" title="statement not covered" >React.useCallback(<span class="fstat-no" title="function not covered" >(a</span>pi: CarouselApi) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!api) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!api) {</span>
 <span class="cstat-no" title="statement not covered" >        return</span>
       }
 &nbsp;
@@ -666,11 +666,11 @@ const Carousel = <span class="cstat-no" title="statement not covered" >React.for
 <span class="cstat-no" title="statement not covered" >      setCanScrollNext(api.canScrollNext())</span>
     }, [])
 &nbsp;
-    const scrollPrev = <span class="cstat-no" title="statement not covered" >React.useCallback(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+    const scrollPrev = <span class="cstat-no" title="statement not covered" >React.useCallback(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      api?.scrollPrev()</span>
     }, [api])
 &nbsp;
-    const scrollNext = <span class="cstat-no" title="statement not covered" >React.useCallback(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+    const scrollNext = <span class="cstat-no" title="statement not covered" >React.useCallback(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      api?.scrollNext()</span>
     }, [api])
 &nbsp;
@@ -679,7 +679,7 @@ const Carousel = <span class="cstat-no" title="statement not covered" >React.for
 <span class="cstat-no" title="statement not covered" >        if (event.key === "ArrowLeft") {</span>
 <span class="cstat-no" title="statement not covered" >          event.preventDefault()</span>
 <span class="cstat-no" title="statement not covered" >          scrollPrev()</span>
-        } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (event.key === "ArrowRight") {</span>
+        } else <span class="cstat-no" title="statement not covered" >if (event.key === "ArrowRight") {</span>
 <span class="cstat-no" title="statement not covered" >          event.preventDefault()</span>
 <span class="cstat-no" title="statement not covered" >          scrollNext()</span>
         }
@@ -687,16 +687,16 @@ const Carousel = <span class="cstat-no" title="statement not covered" >React.for
       [scrollPrev, scrollNext]
     )
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    React.useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!api || !setApi) {</span>
+<span class="cstat-no" title="statement not covered" >    React.useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (!api || !setApi) {</span>
 <span class="cstat-no" title="statement not covered" >        return</span>
       }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      setApi(api)</span>
     }, [api, setApi])
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    React.useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!api) {</span>
+<span class="cstat-no" title="statement not covered" >    React.useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (!api) {</span>
 <span class="cstat-no" title="statement not covered" >        return</span>
       }
 &nbsp;
@@ -704,7 +704,7 @@ const Carousel = <span class="cstat-no" title="statement not covered" >React.for
 <span class="cstat-no" title="statement not covered" >      api.on("reInit", onSelect)</span>
 <span class="cstat-no" title="statement not covered" >      api.on("select", onSelect)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        api?.off("select", onSelect)</span>
       }
     }, [api, onSelect])
@@ -745,7 +745,7 @@ const CarouselContent = <span class="cstat-no" title="statement not covered" >Re
 &gt;(<span class="fstat-no" title="function not covered" >({</span> className, ...props }, ref) =&gt; {
   const { carouselRef, orientation } = <span class="cstat-no" title="statement not covered" >useCarousel()</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div ref={carouselRef} className="overflow-hidden"&gt;
       &lt;div
         ref={ref}
@@ -767,7 +767,7 @@ const CarouselItem = <span class="cstat-no" title="statement not covered" >React
 &gt;(<span class="fstat-no" title="function not covered" >({</span> className, ...props }, ref) =&gt; {
   const { orientation } = <span class="cstat-no" title="statement not covered" >useCarousel()</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div
       ref={ref}
       role="group"
@@ -856,7 +856,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

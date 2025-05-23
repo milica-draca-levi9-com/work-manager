@@ -3,96 +3,98 @@ import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
+  CardFooter,
   CardTitle,
+  CardDescription,
+  CardContent,
 } from '../card'
 
 describe('Card', () => {
-  it('renders basic card', () => {
-    const { container } = render(
+  it('renders card with all subcomponents', () => {
+    const { getByTestId } = render(
+      <Card data-testid="card">
+        <CardHeader data-testid="card-header">
+          <CardTitle data-testid="card-title">Card Title</CardTitle>
+          <CardDescription data-testid="card-description">Card Description</CardDescription>
+        </CardHeader>
+        <CardContent data-testid="card-content">Card Content</CardContent>
+        <CardFooter data-testid="card-footer">Card Footer</CardFooter>
+      </Card>
+    )
+
+    // Check if all components are rendered
+    expect(getByTestId('card')).toBeInTheDocument()
+    expect(getByTestId('card-header')).toBeInTheDocument()
+    expect(getByTestId('card-title')).toBeInTheDocument()
+    expect(getByTestId('card-description')).toBeInTheDocument()
+    expect(getByTestId('card-content')).toBeInTheDocument()
+    expect(getByTestId('card-footer')).toBeInTheDocument()
+  })
+
+  it('renders with correct default classes', () => {
+    const { getByTestId } = render(
+      <Card data-testid="card">
+        <CardHeader data-testid="card-header">
+          <CardTitle data-testid="card-title">Title</CardTitle>
+          <CardDescription data-testid="card-description">Description</CardDescription>
+        </CardHeader>
+        <CardContent data-testid="card-content">Content</CardContent>
+        <CardFooter data-testid="card-footer">Footer</CardFooter>
+      </Card>
+    )
+
+    // Check default classes
+    expect(getByTestId('card')).toHaveClass(
+      'rounded-lg',
+      'border',
+      'bg-card',
+      'text-card-foreground',
+      'shadow-sm'
+    )
+    expect(getByTestId('card-header')).toHaveClass('flex', 'flex-col', 'space-y-1.5', 'p-6')
+    expect(getByTestId('card-title')).toHaveClass('text-2xl', 'font-semibold', 'leading-none', 'tracking-tight')
+    expect(getByTestId('card-description')).toHaveClass('text-sm', 'text-muted-foreground')
+    expect(getByTestId('card-content')).toHaveClass('p-6', 'pt-0')
+    expect(getByTestId('card-footer')).toHaveClass('flex', 'items-center', 'p-6', 'pt-0')
+  })
+
+  it('accepts and applies custom className', () => {
+    const { getByTestId } = render(
+      <Card data-testid="card" className="custom-class">
+        <CardHeader data-testid="card-header" className="header-class">
+          <CardTitle data-testid="card-title" className="title-class">Title</CardTitle>
+          <CardDescription data-testid="card-description" className="description-class">Description</CardDescription>
+        </CardHeader>
+        <CardContent data-testid="card-content" className="content-class">Content</CardContent>
+        <CardFooter data-testid="card-footer" className="footer-class">Footer</CardFooter>
+      </Card>
+    )
+
+    // Check if custom classes are applied
+    expect(getByTestId('card')).toHaveClass('custom-class')
+    expect(getByTestId('card-header')).toHaveClass('header-class')
+    expect(getByTestId('card-title')).toHaveClass('title-class')
+    expect(getByTestId('card-description')).toHaveClass('description-class')
+    expect(getByTestId('card-content')).toHaveClass('content-class')
+    expect(getByTestId('card-footer')).toHaveClass('footer-class')
+  })
+
+  it('renders children correctly', () => {
+    const { getByText } = render(
       <Card>
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
+          <CardTitle>Test Title</CardTitle>
+          <CardDescription>Test Description</CardDescription>
         </CardHeader>
-        <CardContent>Card Content</CardContent>
-        <CardFooter>Card Footer</CardFooter>
+        <CardContent>Test Content</CardContent>
+        <CardFooter>Test Footer</CardFooter>
       </Card>
     )
 
-    expect(container.firstChild).toHaveClass('rounded-lg border bg-card text-card-foreground shadow-sm')
-    expect(container.querySelector('[class*="text-2xl font-semibold"]')).toHaveTextContent('Card Title')
-    expect(container.querySelector('[class*="text-sm text-muted-foreground"]')).toHaveTextContent('Card Description')
-    expect(container.querySelector('[class*="p-6 pt-0"]')).toHaveTextContent('Card Content')
-    expect(container.querySelector('[class*="flex items-center p-6 pt-0"]')).toHaveTextContent('Card Footer')
-  })
-
-  it('renders with custom className', () => {
-    const { container } = render(
-      <Card className="custom-class">
-        <CardContent>Content</CardContent>
-      </Card>
-    )
-
-    expect(container.firstChild).toHaveClass('custom-class')
-  })
-
-  it('renders header with custom className', () => {
-    const { container } = render(
-      <Card>
-        <CardHeader className="custom-header">
-          <CardTitle>Title</CardTitle>
-        </CardHeader>
-      </Card>
-    )
-
-    expect(container.querySelector('[class*="flex flex-col space-y-1.5 p-6"]')).toHaveClass('custom-header')
-  })
-
-  it('renders content with custom className', () => {
-    const { container } = render(
-      <Card>
-        <CardContent className="custom-content">Content</CardContent>
-      </Card>
-    )
-
-    expect(container.querySelector('[class*="p-6 pt-0"]')).toHaveClass('custom-content')
-  })
-
-  it('renders footer with custom className', () => {
-    const { container } = render(
-      <Card>
-        <CardFooter className="custom-footer">Footer</CardFooter>
-      </Card>
-    )
-
-    expect(container.querySelector('[class*="flex items-center p-6 pt-0"]')).toHaveClass('custom-footer')
-  })
-
-  it('renders title with custom className', () => {
-    const { container } = render(
-      <Card>
-        <CardHeader>
-          <CardTitle className="custom-title">Title</CardTitle>
-        </CardHeader>
-      </Card>
-    )
-
-    expect(container.querySelector('[class*="text-2xl font-semibold"]')).toHaveClass('custom-title')
-  })
-
-  it('renders description with custom className', () => {
-    const { container } = render(
-      <Card>
-        <CardHeader>
-          <CardDescription className="custom-description">Description</CardDescription>
-        </CardHeader>
-      </Card>
-    )
-
-    expect(container.querySelector('[class*="text-sm text-muted-foreground"]')).toHaveClass('custom-description')
+    expect(getByText('Test Title')).toBeInTheDocument()
+    expect(getByText('Test Description')).toBeInTheDocument()
+    expect(getByText('Test Content')).toBeInTheDocument()
+    expect(getByText('Test Footer')).toBeInTheDocument()
   })
 }) 

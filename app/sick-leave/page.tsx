@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { ArrowLeft, Thermometer } from "lucide-react"
 import { SickLeaveManagement } from "@/components/sick-leave/sick-leave-management"

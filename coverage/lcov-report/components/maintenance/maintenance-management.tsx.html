@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>0/22</span>
             </div>
         
             
@@ -176,7 +176,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,14 +196,14 @@ import { MaintenanceReportButton } from "./maintenance-report-button"
 import { getMaintenanceIssues } from "@/lib/maintenance-api"
 import type { MaintenanceIssue } from "@/lib/maintenance-api"
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >MaintenanceManagement() {</span>
+export function <span class="fstat-no" title="function not covered" >MaintenanceManagement(</span>) {
   const [issues, setIssues] = <span class="cstat-no" title="statement not covered" >useState&lt;MaintenanceIssue[]&gt;([])</span>
   const [filteredIssues, setFilteredIssues] = <span class="cstat-no" title="statement not covered" >useState&lt;MaintenanceIssue[]&gt;([])</span>
   const [isLoading, setIsLoading] = <span class="cstat-no" title="statement not covered" >useState(true)</span>
   const [issueTypeFilter, setIssueTypeFilter] = <span class="cstat-no" title="statement not covered" >useState&lt;string&gt;("all")</span>
 &nbsp;
   // Fetch maintenance issues
-  const fetchIssues = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async () =&gt; {</span></span>
+  const fetchIssues = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    setIsLoading(true)</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
       const data = <span class="cstat-no" title="statement not covered" >await getMaintenanceIssues()</span>
@@ -217,16 +217,16 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
   }
 &nbsp;
   // Initial data fetch
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    fetchIssues()</span>
   }, [])
 &nbsp;
   // Apply filters when issue type filter changes
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
     let filtered = <span class="cstat-no" title="statement not covered" >issues</span>
 &nbsp;
     // Apply issue type filter
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (issueTypeFilter !== "all") {</span>
+<span class="cstat-no" title="statement not covered" >    if (issueTypeFilter !== "all") {</span>
 <span class="cstat-no" title="statement not covered" >      filtered = filtered.filter(<span class="fstat-no" title="function not covered" >(i</span>ssue) =&gt; <span class="cstat-no" title="statement not covered" >issue.issue_type === issueTypeFilter)</span></span>
     }
 &nbsp;
@@ -234,11 +234,11 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
   }, [issueTypeFilter, issues])
 &nbsp;
   // Handle successful submission of a new maintenance issue
-  const handleIssueReported = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+  const handleIssueReported = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    fetchIssues()</span>
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6"&gt;
       &lt;div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"&gt;
         &lt;MaintenanceFilters issueTypeFilter={issueTypeFilter} setIssueTypeFilter={setIssueTypeFilter} /&gt;
@@ -256,7 +256,7 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

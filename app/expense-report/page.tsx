@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { ArrowLeft, Receipt } from "lucide-react"
 import { ExpenseManagement } from "@/components/expense/expense-management"

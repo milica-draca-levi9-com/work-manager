@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/31</span>
             </div>
         
             
@@ -435,7 +435,7 @@ interface ExpenseFormProps {
   onSuccess: () =&gt; void
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >ExpenseForm({</span> onSuccess }: ExpenseFormProps) {
+export function <span class="fstat-no" title="function not covered" >ExpenseForm(</span>{ onSuccess }: ExpenseFormProps) {
   const [purchaseDate, setPurchaseDate] = <span class="cstat-no" title="statement not covered" >useState&lt;Date | undefined&gt;(new Date())</span>
   const [description, setDescription] = <span class="cstat-no" title="statement not covered" >useState("")</span>
   const [amount, setAmount] = <span class="cstat-no" title="statement not covered" >useState("")</span>
@@ -445,7 +445,7 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
 &nbsp;
   // Simple date formatting function
   const formatDate = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ate: Date | undefined): string =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!date) <span class="cstat-no" title="statement not covered" >return ""</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!date) <span class="cstat-no" title="statement not covered" >return ""</span></span>
 <span class="cstat-no" title="statement not covered" >    return date.toLocaleDateString("en-US", {</span>
       year: "numeric",
       month: "long",
@@ -460,17 +460,17 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
 <span class="cstat-no" title="statement not covered" >    return date.getTime() &gt; today.getTime()</span>
   }
 &nbsp;
-  const handleSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (e</span>: React.FormEvent) =&gt; {</span>
+  const handleSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (e: React.FormEvent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    e.preventDefault()</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!purchaseDate || !description || !amount) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!purchaseDate || !description || !amount) {</span>
 <span class="cstat-no" title="statement not covered" >      setError("Please fill in all required fields")</span>
 <span class="cstat-no" title="statement not covered" >      return</span>
     }
 &nbsp;
     // Validate amount is a number
     const amountNum = <span class="cstat-no" title="statement not covered" >Number.parseFloat(amount)</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(amountNum) || amountNum &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >    if (isNaN(amountNum) || amountNum &lt;= 0) {</span>
 <span class="cstat-no" title="statement not covered" >      setError("Please enter a valid amount")</span>
 <span class="cstat-no" title="statement not covered" >      return</span>
     }
@@ -492,7 +492,7 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
 <span class="cstat-no" title="statement not covered" >      formData.append("description", description)</span>
 <span class="cstat-no" title="statement not covered" >      formData.append("amount", amount)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (file) {</span>
+<span class="cstat-no" title="statement not covered" >      if (file) {</span>
 <span class="cstat-no" title="statement not covered" >        formData.append("attachment", file)</span>
       }
 &nbsp;
@@ -532,7 +532,7 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
               mode="single"
               selected={purchaseDate}
               onSelect={setPurchaseDate}
-              disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? isInFuture(date) : false)}</span>
+              disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? isInFuture(date) : false)</span>}
               initialFocus
             /&gt;
           &lt;/PopoverContent&gt;
@@ -570,7 +570,7 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
 &nbsp;
       &lt;div className="space-y-2"&gt;
         &lt;Label htmlFor="attachment"&gt;Receipt (Optional)&lt;/Label&gt;
-        &lt;Input id="attachment" type="file" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >setFile(e.target.files?.[0] || null)} /&gt;</span>
+        &lt;Input id="attachment" type="file" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >setFile(e.target.files?.[0] || null)}</span> /&gt;
         &lt;p className="text-sm text-gray-500"&gt;Upload a receipt or invoice (PDF, JPG, PNG)&lt;/p&gt;
       &lt;/div&gt;
 &nbsp;
@@ -601,7 +601,7 @@ export function <span class="fstat-no" title="function not covered" >ExpenseForm
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

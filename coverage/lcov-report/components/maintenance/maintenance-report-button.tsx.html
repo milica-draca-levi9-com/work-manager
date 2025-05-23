@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -175,7 +175,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,7 +229,7 @@ interface MaintenanceReportButtonProps {
   onIssueReported: () =&gt; void
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >MaintenanceReportButton({</span> onIssueReported }: MaintenanceReportButtonProps) {
+export function <span class="fstat-no" title="function not covered" >MaintenanceReportButton(</span>{ onIssueReported }: MaintenanceReportButtonProps) {
   const [isDialogOpen, setIsDialogOpen] = <span class="cstat-no" title="statement not covered" >useState(false)</span>
   const [successMessage, setSuccessMessage] = <span class="cstat-no" title="statement not covered" >useState&lt;string | null&gt;(null)</span>
   const [assignedPerson, setAssignedPerson] = <span class="cstat-no" title="statement not covered" >useState&lt;{ name: string; email: string } | null&gt;(null)</span>
@@ -243,7 +243,7 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
     )
 &nbsp;
     // Close dialog and refresh data after 3 seconds
-<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      setIsDialogOpen(false)</span>
 <span class="cstat-no" title="statement not covered" >      setSuccessMessage(null)</span>
 <span class="cstat-no" title="statement not covered" >      setAssignedPerson(null)</span>
@@ -251,9 +251,9 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
     }, 3000)
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
-      &lt;Button onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >s</span>etIsDialogOpen(true)} c</span>lassName="bg-amber-500 hover:bg-amber-600"&gt;
+      &lt;Button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsDialogOpen(true)}</span> className="bg-amber-500 hover:bg-amber-600"&gt;
         &lt;Plus className="mr-2 h-4 w-4" /&gt;
         Report an Issue
       &lt;/Button&gt;
@@ -262,7 +262,7 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
         open={isDialogOpen}
         onOpenChange={<span class="fstat-no" title="function not covered" >(o</span>pen) =&gt; {
 <span class="cstat-no" title="statement not covered" >          setIsDialogOpen(open)</span>
-<span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if (!open) {</span>
+<span class="cstat-no" title="statement not covered" >          if (!open) {</span>
 <span class="cstat-no" title="statement not covered" >            setSuccessMessage(null)</span>
 <span class="cstat-no" title="statement not covered" >            setAssignedPerson(null)</span>
           }
@@ -275,7 +275,7 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
           &lt;/DialogHeader&gt;
 &nbsp;
           {successMessage ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >            &lt;Alert className="bg-green-50 border-green-200"&gt;</span>
+            &lt;Alert className="bg-green-50 border-green-200"&gt;
               &lt;CheckCircle className="h-4 w-4 text-green-600" /&gt;
               &lt;AlertTitle&gt;Success!&lt;/AlertTitle&gt;
               &lt;AlertDescription&gt;{successMessage}&lt;/AlertDescription&gt;
@@ -298,7 +298,7 @@ export function <span class="fstat-no" title="function not covered" >Maintenance
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

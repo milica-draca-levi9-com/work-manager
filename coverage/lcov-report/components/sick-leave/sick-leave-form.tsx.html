@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/42</span>
+                <span class='fraction'>0/48</span>
             </div>
         
             
@@ -486,7 +486,7 @@ interface SickLeaveFormProps {
   onSuccess: () =&gt; void
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >SickLeaveForm({</span> onSuccess }: SickLeaveFormProps) {
+export function <span class="fstat-no" title="function not covered" >SickLeaveForm(</span>{ onSuccess }: SickLeaveFormProps) {
   const [startDate, setStartDate] = <span class="cstat-no" title="statement not covered" >useState&lt;Date | undefined&gt;(new Date())</span>
   const [endDate, setEndDate] = <span class="cstat-no" title="statement not covered" >useState&lt;Date | undefined&gt;(new Date())</span>
   const [reason, setReason] = <span class="cstat-no" title="statement not covered" >useState("")</span>
@@ -496,7 +496,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
 &nbsp;
   // Simple date formatting function
   const formatDate = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ate: Date | undefined): string =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!date) <span class="cstat-no" title="statement not covered" >return ""</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!date) <span class="cstat-no" title="statement not covered" >return ""</span></span>
 <span class="cstat-no" title="statement not covered" >    return date.toLocaleDateString("en-US", {</span>
       year: "numeric",
       month: "long",
@@ -506,7 +506,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
 &nbsp;
   // Simple date comparison function
   const isDateBefore = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ate1: Date | undefined, date2: Date | undefined): boolean =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!date1 || !date2) <span class="cstat-no" title="statement not covered" >return false</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!date1 || !date2) <span class="cstat-no" title="statement not covered" >return false</span></span>
 <span class="cstat-no" title="statement not covered" >    return date1.getTime() &lt; date2.getTime()</span>
   }
 &nbsp;
@@ -517,15 +517,15 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
 <span class="cstat-no" title="statement not covered" >    return date.getTime() &lt; today.getTime()</span>
   }
 &nbsp;
-  const handleSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (e</span>: React.FormEvent) =&gt; {</span>
+  const handleSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (e: React.FormEvent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    e.preventDefault()</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!startDate || !endDate || !reason) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!startDate || !endDate || !reason) {</span>
 <span class="cstat-no" title="statement not covered" >      setError("Please fill in all required fields")</span>
 <span class="cstat-no" title="statement not covered" >      return</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (startDate &gt; endDate) {</span>
+<span class="cstat-no" title="statement not covered" >    if (startDate &gt; endDate) {</span>
 <span class="cstat-no" title="statement not covered" >      setError("End date cannot be before start date")</span>
 <span class="cstat-no" title="statement not covered" >      return</span>
     }
@@ -548,7 +548,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
 <span class="cstat-no" title="statement not covered" >      formData.append("end_date", formattedEndDate)</span>
 <span class="cstat-no" title="statement not covered" >      formData.append("reason", reason)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (file) {</span>
+<span class="cstat-no" title="statement not covered" >      if (file) {</span>
 <span class="cstat-no" title="statement not covered" >        formData.append("attachment", file)</span>
       }
 &nbsp;
@@ -591,11 +591,11 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
                 onSelect={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; {
 <span class="cstat-no" title="statement not covered" >                  setStartDate(date)</span>
                   // If end date is before new start date, update end date
-<span class="cstat-no" title="statement not covered" >                  <span class="missing-if-branch" title="if path not taken" >I</span>if (endDate &amp;&amp; date &amp;&amp; isDateBefore(endDate, date)) {</span>
+<span class="cstat-no" title="statement not covered" >                  if (endDate &amp;&amp; date &amp;&amp; isDateBefore(endDate, date)) {</span>
 <span class="cstat-no" title="statement not covered" >                    setEndDate(date)</span>
                   }
                 }}
-                disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? isBeforeToday(date) : false)}</span>
+                disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? isBeforeToday(date) : false)</span>}
                 initialFocus
               /&gt;
             &lt;/PopoverContent&gt;
@@ -621,7 +621,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
                 mode="single"
                 selected={endDate}
                 onSelect={setEndDate}
-                disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? (startDate ? isDateBefore(date, startDate) : isBeforeToday(date)) : false)}</span>
+                disabled={<span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; (<span class="cstat-no" title="statement not covered" >date ? (startDate ? isDateBefore(date, startDate) : isBeforeToday(date)) : false)</span>}
                 initialFocus
               /&gt;
             &lt;/PopoverContent&gt;
@@ -642,7 +642,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
 &nbsp;
       &lt;div className="space-y-2"&gt;
         &lt;Label htmlFor="attachment"&gt;Attachment (Optional)&lt;/Label&gt;
-        &lt;Input id="attachment" type="file" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >setFile(e.target.files?.[0] || null)} /&gt;</span>
+        &lt;Input id="attachment" type="file" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >setFile(e.target.files?.[0] || null)}</span> /&gt;
         &lt;p className="text-sm text-gray-500"&gt;Upload a doctor's note or other relevant document (PDF, JPG, PNG)&lt;/p&gt;
       &lt;/div&gt;
 &nbsp;
@@ -673,7 +673,7 @@ export function <span class="fstat-no" title="function not covered" >SickLeaveFo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

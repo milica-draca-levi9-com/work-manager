@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -120,16 +120,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,6 +133,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,7 +145,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,11 +170,11 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar"
 &nbsp;
 import { cn } from "@/lib/utils"
 &nbsp;
-const Avatar = React.forwardRef&lt;
+const Avatar = <span class="cstat-no" title="statement not covered" >React.forwardRef&lt;</span>
   React.ElementRef&lt;typeof AvatarPrimitive.Root&gt;,
   React.ComponentPropsWithoutRef&lt;typeof AvatarPrimitive.Root&gt;
-&gt;(({ className, ...props }, ref) =&gt; (
-  &lt;AvatarPrimitive.Root
+&gt;(<span class="fstat-no" title="function not covered" >({</span> className, ...props }, ref) =&gt; (
+<span class="cstat-no" title="statement not covered" >  &lt;AvatarPrimitive.Root</span>
     ref={ref}
     className={cn(
       "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
@@ -185,11 +185,11 @@ const Avatar = React.forwardRef&lt;
 ))
 <span class="cstat-no" title="statement not covered" >Avatar.displayName = AvatarPrimitive.Root.displayName</span>
 &nbsp;
-const AvatarImage = React.forwardRef&lt;
+const AvatarImage = <span class="cstat-no" title="statement not covered" >React.forwardRef&lt;</span>
   React.ElementRef&lt;typeof AvatarPrimitive.Image&gt;,
   React.ComponentPropsWithoutRef&lt;typeof AvatarPrimitive.Image&gt;
-&gt;(({ className, ...props }, ref) =&gt; (
-  &lt;AvatarPrimitive.Image
+&gt;(<span class="fstat-no" title="function not covered" >({</span> className, ...props }, ref) =&gt; (
+<span class="cstat-no" title="statement not covered" >  &lt;AvatarPrimitive.Image</span>
     ref={ref}
     className={cn("aspect-square h-full w-full", className)}
     {...props}
@@ -197,11 +197,11 @@ const AvatarImage = React.forwardRef&lt;
 ))
 <span class="cstat-no" title="statement not covered" >AvatarImage.displayName = AvatarPrimitive.Image.displayName</span>
 &nbsp;
-const AvatarFallback = React.forwardRef&lt;
+const AvatarFallback = <span class="cstat-no" title="statement not covered" >React.forwardRef&lt;</span>
   React.ElementRef&lt;typeof AvatarPrimitive.Fallback&gt;,
   React.ComponentPropsWithoutRef&lt;typeof AvatarPrimitive.Fallback&gt;
-&gt;(({ className, ...props }, ref) =&gt; (
-  &lt;AvatarPrimitive.Fallback
+&gt;(<span class="fstat-no" title="function not covered" >({</span> className, ...props }, ref) =&gt; (
+<span class="cstat-no" title="statement not covered" >  &lt;AvatarPrimitive.Fallback</span>
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full bg-muted",
@@ -220,7 +220,7 @@ export { Avatar, AvatarImage, AvatarFallback }
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Header } from "@/components/header"
 import { WelcomeSection } from "@/components/welcome-section"
 import { FeatureCardsGridFixed } from "@/components/feature-cards-grid-fixed"

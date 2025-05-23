@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { ArrowLeft, Wrench } from "lucide-react"
 import { MaintenanceManagement } from "@/components/maintenance/maintenance-management"

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -148,7 +148,14 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,6 +228,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,7 +250,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FeatureCardWrapper } from "@/components/feature-card-wrapper"
 import { Thermometer, GraduationCap, Plane, Wrench, Car, Receipt } from "lucide-react"
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >FeatureCardsGridFixed() {</span>
+export function <span class="fstat-no" title="function not covered" >FeatureCardsGridFixed(</span>) {
   const features = <span class="cstat-no" title="statement not covered" >[</span>
     {
       title: "Sick Leave",
@@ -247,6 +261,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-rose-100",
       hoverBgColor: "bg-rose-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-rose-50", // Added background color
     },
     {
       title: "Education &amp; Social",
@@ -257,6 +272,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-purple-100",
       hoverBgColor: "bg-purple-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-purple-50", // Added background color
     },
     {
       title: "Corporate Travel",
@@ -267,6 +283,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-sky-100",
       hoverBgColor: "bg-sky-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-sky-50", // Added background color
     },
     {
       title: "Expense Report",
@@ -277,6 +294,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-emerald-100",
       hoverBgColor: "bg-emerald-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-emerald-50", // Added background color
     },
     {
       title: "Maintenance Issues",
@@ -287,6 +305,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-amber-100",
       hoverBgColor: "bg-amber-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-amber-50", // Added background color
     },
     {
       title: "Asset Booking",
@@ -297,13 +316,14 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
       bgColor: "bg-teal-100",
       hoverBgColor: "bg-teal-500",
       hoverTextColor: "text-white",
+      cardBgColor: "bg-teal-50", // Added background color
     },
   ]
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
-      {features.map((feature, index) =&gt; (
-        &lt;FeatureCardWrapper
+      {features.map(<span class="fstat-no" title="function not covered" >(f</span>eature, index) =&gt; (
+<span class="cstat-no" title="statement not covered" >        &lt;FeatureCardWrapper</span>
           key={index}
           title={feature.title}
           description={feature.description}
@@ -313,6 +333,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
           bgColor={feature.bgColor}
           hoverBgColor={feature.hoverBgColor}
           hoverTextColor={feature.hoverTextColor}
+          cardBgColor={feature.cardBgColor} // Pass the cardBgColor prop
         /&gt;
       ))}
     &lt;/div&gt;
@@ -325,7 +346,7 @@ export function <span class="fstat-no" title="function not covered" >FeatureCard
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T13:49:21.997Z
+                at 2025-05-23T15:20:43.900Z
             </div>
         <script src="../prettify.js"></script>
         <script>
