@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Plane } from "lucide-react"
+import { ArrowLeft, Plane, AlertTriangle } from "lucide-react"
 
 export default function CorporateTravelPage() {
   return (
@@ -20,20 +20,20 @@ export default function CorporateTravelPage() {
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-6">
           <div className="flex justify-center items-center flex-col h-64">
-            <div className="text-gray-400 mb-4">
-              <svg className="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M19 14v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6m3-4h8m-4-4v8m0 0l3-3m-3 3l-3-3"
-                />
-              </svg>
+            <div className="text-amber-500 mb-4">
+              <AlertTriangle className="h-16 w-16 mx-auto" />
             </div>
-            <h2 className="text-xl font-medium text-gray-700 mb-2">This page is under construction</h2>
+            <h2 className="text-xl font-medium text-gray-700 mb-2">Not Eligible for Travel Requests</h2>
             <p className="text-gray-500 text-center max-w-md">
-              The corporate travel booking system will be available soon. Check back later!
+              You are currently not eligible to make any travel requests. This could be due to your position, department
+              policy, or other organizational restrictions.
             </p>
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+              <p className="text-sm text-gray-600">
+                If you believe this is an error or need to request travel for business purposes, please contact your
+                manager or the HR department.
+              </p>
+            </div>
           </div>
         </div>
 
