@@ -1,15 +1,9 @@
+import { SickLeaveStats } from "@/components/sick-leave-stats"
 import { StatsCardWrapper } from "@/components/stats-card-wrapper"
-import { Thermometer, GraduationCap, Plane, Receipt } from "lucide-react"
+import { GraduationCap, Plane, Receipt } from "lucide-react"
 
 export function StatsGridFixed() {
-  const stats = [
-    {
-      title: "Pending Requests",
-      value: 3,
-      icon: Thermometer,
-      bgColor: "bg-rose-100",
-      iconColor: "text-rose-500",
-    },
+  const otherStats = [
     {
       title: "Upcoming Events",
       value: 2,
@@ -35,7 +29,8 @@ export function StatsGridFixed() {
 
   return (
     <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4">
-      {stats.map((stat, index) => (
+      <SickLeaveStats />
+      {otherStats.map((stat, index) => (
         <StatsCardWrapper
           key={index}
           title={stat.title}

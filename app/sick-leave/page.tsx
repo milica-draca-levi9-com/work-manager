@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { ArrowLeft, Thermometer } from "lucide-react"
+import { SickLeaveManagement } from "@/components/sick-leave/sick-leave-management"
 
 export default function SickLeavePage() {
   return (
@@ -18,30 +18,7 @@ export default function SickLeavePage() {
           <h1 className="text-3xl font-bold text-gray-800">Sick Leave</h1>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-6">
-          <div className="flex justify-center items-center flex-col h-64">
-            <div className="text-gray-400 mb-4">
-              <svg className="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M19 14v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6m3-4h8m-4-4v8m0 0l3-3m-3 3l-3-3"
-                />
-              </svg>
-            </div>
-            <h2 className="text-xl font-medium text-gray-700 mb-2">This page is under construction</h2>
-            <p className="text-gray-500 text-center max-w-md">
-              The sick leave submission form will be available soon. Check back later!
-            </p>
-          </div>
-        </div>
-
-        <Link href="/">
-          <Button size="lg" className="bg-rose-500 hover:bg-rose-600">
-            Return to Dashboard
-          </Button>
-        </Link>
+        <SickLeaveManagement />
       </div>
     </div>
   )
